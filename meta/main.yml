@@ -1,0 +1,14 @@
+galaxy_info:
+  company: SUNSCRAPERS
+  description: This role creates and mounts swap.
+  min_ansible_version: 1.9
+  license: MIT
+  platforms:
+  - name: Ubuntu
+    versions:
+    - Trusty
+  categories:
+  - system
+
+dependencies: []
+
