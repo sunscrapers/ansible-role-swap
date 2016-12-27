@@ -13,14 +13,15 @@
   tags:
     - swap.file.permissions
 
-- name: "Check swap file type"
+- name: Check swap file type
   command: file {{ swap_file_path }}
   register: swapfile
+  changed_when: False
   tags:
     - swap.file.mkswap
 
 - name: Make swap file
-  command: "sudo mkswap {{ swap_file_path }}"
+  command: mkswap {{ swap_file_path }}
   when: swapfile.stdout.find('swap file') == -1
   tags:
     - swap.file.mkswap
@@ -37,7 +38,7 @@
     - swap.fstab
 
 - name: Mount swap
-  command: "swapon {{ swap_file_path }}"
+  command: swapon {{ swap_file_path }}
   when: ansible_swaptotal_mb < 1
   tags:
     - swap.file.swapon
